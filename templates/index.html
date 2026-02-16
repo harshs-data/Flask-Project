@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %} Home{% endblock title %}
+{% block body %}
+
+<div class="container container-custom my-5">
+  <div class="row g-5">
+    <div class="col-lg-4 mb-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title mb-4">Add a Task</h4>
+          <form action="/" method="POST">
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" class="form-control" name="title" id="title" placeholder="e.g., Buy groceries"
+                required>
+            </div>
+            <div class="mb-3">
+              <label for="desc" class="form-label">Description</label>
+              <textarea class="form-control" name="desc" id="desc" rows="3"
+                placeholder="e.g., Milk, Eggs, Bread..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Add Todo</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title mb-4">Your Todos</h4>
+
+          {% if allTodo|length == 0 %}
+          <div class="text-center py-5">
+            <div class="mb-3 text-muted">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-clipboard"
+                viewBox="0 0 16 16">
+                <path
+                  d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                <path
+                  d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+              </svg>
+            </div>
+            <p class="text-muted">No tasks found. Start by adding one!</p>
+          </div>
+          {% else %}
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead>
+                <tr>
+                  <th scope="col" style="width: 5%;">#</th>
+                  <th scope="col" style="width: 25%;">Title</th>
+                  <th scope="col" style="width: 35%;">Description</th>
+                  <th scope="col" style="width: 20%;">Date Created</th>
+                  <th scope="col" style="width: 15%;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for todo in allTodo %}
+                <tr>
+                  <th scope="row" class="text-muted-small">{{loop.index}}</th>
+                  <td class="fw-bold">{{todo.title}}</td>
+                  <td class="text-muted-small">{{todo.desc}}</td>
+                  <td class="text-muted-small">{{todo.date_created.strftime('%Y-%m-%d')}}</td>
+                  <td>
+                    <div class="d-flex gap-2">
+                      <a href="/update/{{todo.sno}}" class="btn btn-outline-primary btn-sm">Update</a>
+                      <a href="/delete/{{todo.sno}}" class="btn btn-danger btn-sm text-white">Delete</a>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}

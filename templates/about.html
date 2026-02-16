@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %} About{% endblock title %}
+{% block body %}
+
+<div class="container container-custom my-5">
+    <div class="row justification-content-center">
+        <div class="col-lg-8 mx-auto">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-5">
+                    <h1 class="mb-4">About MyTodo</h1>
+                    <p class="lead text-muted mb-4">A simple, modern task management application built with Flask and
+                        Bootstrap.</p>
+
+                    <hr class="my-4">
+
+                    <h3>Our Mission</h3>
+                    <p>MyTodo is designed to help you organize your daily tasks efficiently. We believe in simplicity
+                        and productivity.</p>
+
+                    <h3 class="mt-4">Features</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">✅ Easy task creation</li>
+                        <li class="mb-2">✏️ Quick editing</li>
+                        <li class="mb-2">🗑️ Safe deletion with confirmation</li>
+                        <li class="mb-2">🎨 Clean, modern interface</li>
+                    </ul>
+
+                    <div class="mt-5 p-4 bg-light rounded">
+                        <h5>Tech Stack</h5>
+                        <p class="mb-0 text-muted">Python, Flask, SQLAlchemy, Bootstrap 5, Custom CSS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
